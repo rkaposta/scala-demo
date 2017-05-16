@@ -1,40 +1,28 @@
 def matchNum(x: Int): String = x match {
   case 0 => "zero"
-  case _ => "non-zero"
+  case _ if x < 0 => "negative"
+  case _ if x > 0 => "positive"
 }
 
- matchNum(-1)
+matchNum(-1)
+matchNum(0)
+matchNum(1)
 
 
 //----------------------------------------------
 
 
-trait Expr {
-  def leftOp: Expr
-  def rightOp: Expr
-  def numValue: Int
-}
+trait Expr
 
-class Number(n: Int) extends Expr {
-  def numValue: Int = n
-  def leftOp: Expr = throw new Error("number.leftOp")
-  def rightOp: Expr = throw new Error("number.rightOp")
-}
+case class Number(n: Int) extends Expr
 
-class Sum(e1: Expr, e2: Expr) extends Expr {
-  def numValue: Int = throw new Error("sum.numValue")
-  def leftOp: Expr = e1
-  def rightOp: Expr = e2
-}
+case class Sum(e1: Expr, e2: Expr) extends Expr
 
-
-
-/*
 def eval(e: Expr): Int = e match {
-    ...
+  case Number(n) => n
+  case Sum(e1, e2) => eval(e1) + eval(e2)
 }
 
-*/
-// eval(Sum(Number(5), Number(6)))
+eval(Sum(Number(5), Number(6)))
 
 

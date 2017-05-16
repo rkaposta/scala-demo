@@ -8,3 +8,9 @@ def sum(f: Int => Int): (Int, Int) => Int = {
   }
   sumInner
 }
+
+def simple = sum(id)
+def cubic = sum(cube)
+
+simple(1, 2)
+cubic(1, 2)

@@ -2,18 +2,21 @@ trait Expr {
   def leftOp: Expr
   def rightOp: Expr
   def numValue: Int
+  def eval: Int
 }
 
 class Number(n: Int) extends Expr {
   def numValue: Int = n
   def leftOp: Expr = throw new Error("number.leftOp")
   def rightOp: Expr = throw new Error("number.rightOp")
+  def eval: Int = n
 }
 
 class Sum(e1: Expr, e2: Expr) extends Expr {
   def numValue: Int = throw new Error("sum.numValue")
   def leftOp: Expr = e1
   def rightOp: Expr = e2
+  def eval: Int = e1.eval + e2.eval
 }
 
 def eval(e: Expr): Int = {
@@ -28,7 +31,8 @@ def eval(e: Expr): Int = {
 }
 
 
-// eval(new Sum(new Number(5), new Number(6)))
+eval(new Sum(new Number(5), new Number(6)))
+new Sum(new Number(5), new Number(10)).eval
 
 /*
 

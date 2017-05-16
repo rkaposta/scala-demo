@@ -7,7 +7,8 @@ def sum(f: Int => Int, a: Int, b: Int): Int = {
 }
 
 
-
+sum(id, 1, 2)
+sum(cube, 1, 2)
 
 
 

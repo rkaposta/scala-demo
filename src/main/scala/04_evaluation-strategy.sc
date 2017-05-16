@@ -11,6 +11,6 @@ def constOne(a: Int, b: => Int): Int = {
 }
 
 
-// constOne(1, waiting())
+constOne(1, waiting())
 
-// constOne(waiting(), 1)
+constOne(waiting(), 1)
